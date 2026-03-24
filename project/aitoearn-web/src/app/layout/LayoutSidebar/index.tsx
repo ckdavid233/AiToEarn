@@ -71,8 +71,8 @@ function LayoutSidebar() {
             <MyChannelsEntry collapsed={collapsed} />
           </div>
 
-          {/* 底部功能区 */}
-          <BottomSection collapsed={collapsed} onOpenSettings={openSettings} />
+          {/* 底部功能区（浏览器插件入口已隐藏） */}
+          {/* <BottomSection collapsed={collapsed} onOpenSettings={openSettings} /> */}
 
           {/* 用户下拉菜单 */}
           <div className="mt-2 border-t border-sidebar-border pt-2">

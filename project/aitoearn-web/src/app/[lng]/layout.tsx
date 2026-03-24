@@ -37,6 +37,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lng: stri
     title: t('title'),
     description: t('content'),
     keywords: 'aitoearn, AiToEarn, ai, earn, aitoearn.com',
+    icons: {
+      icon: '/logo.png',
+      apple: '/logo.png',
+    },
     alternates: {
       languages: Object.fromEntries(alternateRefs.map(({ href, hreflang }) => [hreflang, href])),
     },

@@ -1,5 +1,5 @@
 /**
- * LogoSection - 侧边栏 Logo 区域
+ * LogoSection - Sidebar logo area
  */
 
 'use client'
@@ -23,17 +23,17 @@ export function LogoSection({ collapsed, onToggle }: LogoSectionProps) {
       )}
     >
       {collapsed ? (
-        // 收起状态：默认显示 logo，hover 时显示展开按钮
+        // Collapsed state: show logo, reveal expand button on hover
         <div className="relative flex h-8 w-8 items-center justify-center">
-          {/* Logo - 默认显示，hover 时隐藏 */}
+          {/* Logo - visible by default, hidden on hover */}
           <Link
             href="/"
             className="flex items-center justify-center transition-opacity group-hover:opacity-0"
             data-testid="sidebar-logo-link"
           >
-            <Image src={logo} alt="Aitoearn" width={32} height={32} />
+            <Image src={logo} alt="TsingWin" width={32} height={32} />
           </Link>
-          {/* 展开按钮 - 默认隐藏，hover 时显示 */}
+          {/* Expand button - hidden by default, shown on hover */}
           <button
             onClick={onToggle}
             className="absolute inset-0 flex items-center justify-center rounded-md border-none bg-transparent text-muted-foreground/70 opacity-0 transition-opacity hover:bg-accent hover:text-muted-foreground group-hover:opacity-100"
@@ -49,8 +49,8 @@ export function LogoSection({ collapsed, onToggle }: LogoSectionProps) {
             className="flex items-center gap-2 text-foreground no-underline hover:opacity-85"
             data-testid="sidebar-logo-link"
           >
-            <Image src={logo} alt="Aitoearn" width={32} height={32} />
-            <span className="text-base font-semibold tracking-tight">Aitoearn</span>
+            <Image src={logo} alt="TsingWin" width={32} height={32} />
+            <span className="text-base font-semibold tracking-tight">TsingWin</span>
           </Link>
           <button
             onClick={onToggle}
@@ -64,3 +64,4 @@ export function LogoSection({ collapsed, onToggle }: LogoSectionProps) {
     </div>
   )
 }
+

@@ -31,7 +31,7 @@ function NavItem({ item, isActive, collapsed }: NavItemProps) {
       data-testid={`sidebar-nav-item-${item.translationKey}`}
       className={cn(
         'relative flex items-center rounded-lg text-sm font-medium transition-all',
-        'text-muted-foreground hover:bg-accent hover:text-foreground',
+        'text-muted-foreground hover:bg-accent hover:text-violet-600',
         isActive && 'bg-background text-foreground shadow-sm',
         collapsed ? 'justify-center px-2 py-2.5' : 'gap-3 px-3 py-2.5',
       )}
@@ -151,7 +151,7 @@ export function NavSection({ items, currentRoute, collapsed }: NavSectionProps) 
                   <button
                     className={cn(
                       'relative flex items-center justify-center rounded-lg text-sm font-medium transition-all w-full',
-                      'text-muted-foreground hover:bg-accent hover:text-foreground',
+                      'text-muted-foreground hover:bg-accent hover:text-violet-600',
                       'px-2 py-2.5',
                     )}
                     data-testid="sidebar-more-btn"
@@ -196,7 +196,7 @@ export function NavSection({ items, currentRoute, collapsed }: NavSectionProps) 
                   data-testid="sidebar-more-btn"
                   className={cn(
                     'relative flex items-center rounded-lg text-sm font-medium transition-all w-full',
-                    'text-muted-foreground hover:bg-accent hover:text-foreground',
+                    'text-muted-foreground hover:bg-accent hover:text-violet-600',
                     groupOpen && 'bg-accent text-foreground',
                     'gap-3 px-3 py-2.5',
                   )}

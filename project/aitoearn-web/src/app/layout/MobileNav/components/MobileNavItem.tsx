@@ -26,7 +26,7 @@ export function MobileNavItem({
       data-testid={`mobile-nav-item-${translationKey}`}
       className={cn(
         'flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium transition-all',
-        'text-muted-foreground hover:bg-muted hover:text-foreground',
+        'text-muted-foreground hover:bg-muted hover:text-violet-600',
         isActive && 'bg-primary/10 text-primary',
       )}
     >
