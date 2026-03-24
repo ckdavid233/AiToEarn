@@ -162,6 +162,7 @@ export async function aiChatStream(data: {
 }) {
   const token = useUserStore.getState().token
   const lang = useUserStore.getState().lang
+  const disableAuth = process.env.NEXT_PUBLIC_DISABLE_AUTH === 'true'
 
   const base = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '')
   const url = base ? `${base}/ai/chat` : '/api/ai/chat'
@@ -170,7 +171,7 @@ export async function aiChatStream(data: {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': token ? `Bearer ${token}` : '',
+      'Authorization': !disableAuth && token ? `Bearer ${token}` : '',
       'Accept-Language': lang || 'en',
     },
     body: JSON.stringify({

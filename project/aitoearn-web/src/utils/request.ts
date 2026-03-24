@@ -20,9 +20,10 @@ const fetchService = new FetchService({
   baseURL: `${process.env.NEXT_PUBLIC_API_URL}/`,
   requestInterceptor(requestParams) {
     const token = useUserStore.getState().token
+    const disableAuth = process.env.NEXT_PUBLIC_DISABLE_AUTH === 'true'
     requestParams.headers = {
       ...(requestParams.headers || {}),
-      Authorization: token ? `Bearer ${token}` : '',
+      Authorization: !disableAuth && token ? `Bearer ${token}` : '',
     }
 
     // 添加语言头

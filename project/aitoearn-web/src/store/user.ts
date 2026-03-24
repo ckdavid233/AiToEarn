@@ -59,6 +59,8 @@ function getState(): IUserStore {
   return lodash.cloneDeep(state)
 }
 
+const isNoAuthMode = process.env.NEXT_PUBLIC_DISABLE_AUTH === 'true'
+
 export const useUserStore = createPersistStore(
   {
     ...getState(),
@@ -82,7 +84,7 @@ export const useUserStore = createPersistStore(
       },
 
       async appInit() {
-        if (!_get().token) {
+        if (!isNoAuthMode && !_get().token) {
           try {
             const res = await fetch('/auto-login')
             const data = await res.json()
@@ -91,8 +93,10 @@ export const useUserStore = createPersistStore(
           } catch {}
         }
         set({ _appInitialized: true })
-        methods.getUserInfo()
-        useAccountStore.getState().accountInit()
+        if (!isNoAuthMode) {
+          methods.getUserInfo()
+          useAccountStore.getState().accountInit()
+        }
       },
 
       // 获取用户信息

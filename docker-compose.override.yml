@@ -9,6 +9,7 @@ services:
     volumes:
       - ./project/aitoearn-web:/app
       - aitoearn-web-node-modules:/app/node_modules
+      - aitoearn-web-next:/app/.next
     environment:
       NODE_ENV: development
       CI: "true"
@@ -18,10 +19,13 @@ services:
       AUTO_LOGIN_TOKEN_PATH: /data/init/token.txt
     command: >
       sh -c "mkdir -p /app/.next
+      && touch /app/.next/trace
       && corepack enable pnpm
       && (test -d /app/node_modules/.pnpm || pnpm install --frozen-lockfile)
       && pnpm dev -H 0.0.0.0 -p 3000"
 
 volumes:
   aitoearn-web-node-modules:
+    driver: local
+  aitoearn-web-next:
     driver: local
