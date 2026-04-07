@@ -171,7 +171,7 @@ module.exports = {
           description: '本地 Qwen3 文案（OpenAI 兼容，用于文案工坊等）',
           inputModalities: ['text'],
           outputModalities: ['text'],
-          openaiBaseUrl: COPY_STUDIO_LOCAL_OPENAI_BASE_URL || 'http://192.168.0.93:8000/v1',
+          openaiBaseUrl: COPY_STUDIO_LOCAL_OPENAI_BASE_URL || 'http://127.0.0.1:8000/v1',
           openaiApiKey: COPY_STUDIO_LOCAL_OPENAI_API_KEY || 'local',
           pricing: {
             tiers: [

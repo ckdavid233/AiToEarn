@@ -5,7 +5,7 @@ services:
     image: next-base-image
     container_name: aitoearn-web
     ports:
-      - '3000:3000'
+      - '3100:3000'
     volumes:
       - ./standalone:/app
     command: node server.js
