@@ -1,9 +1,27 @@
 services:
+  mongodb-keyfile-init:
+    image: mongo:latest
+    container_name: aitoearn-mongodb-keyfile-init
+    restart: "no"
+    user: "0:0"
+    volumes:
+      - ./mongodb/keyfile:/keyfile-src:ro
+      - mongodb-keyfile:/keyfile-dst
+    entrypoint: >
+      /bin/sh -c "
+      cp /keyfile-src /keyfile-dst/keyfile &&
+      chmod 400 /keyfile-dst/keyfile &&
+      chown 999:999 /keyfile-dst/keyfile
+      "
+
   mongodb:
     image: mongo:latest
     container_name: aitoearn-mongodb
     restart: unless-stopped
-    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    depends_on:
+      mongodb-keyfile-init:
+        condition: service_completed_successfully
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all", "--keyFile", "/etc/mongo/keyfile"]
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
@@ -12,6 +30,7 @@ services:
     volumes:
       - mongodb-data:/data/db
       - mongodb-config:/data/configdb
+      - mongodb-keyfile:/etc/mongo:ro
     networks:
       - aitoearn-network
     healthcheck:
@@ -320,6 +339,8 @@ volumes:
   mongodb-data:
     driver: local
   mongodb-config:
+    driver: local
+  mongodb-keyfile:
     driver: local
   redis-data:
     driver: local
