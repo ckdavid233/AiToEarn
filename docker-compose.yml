@@ -123,7 +123,7 @@ services:
       "
 
   aitoearn-ai:
-    image: aitoearn/aitoearn-ai:latest
+    image: aitoearn/aitoearn-ai@sha256:7ea4ee6bdcd2b87c752def8c93efd027f242d4fe65cbd9542c4ebed2e0e888c2
     container_name: aitoearn-ai
     restart: unless-stopped
     extra_hosts:
@@ -184,7 +184,7 @@ services:
       start_period: 60s
 
   aitoearn-server:
-    image: aitoearn/aitoearn-server:latest
+    image: aitoearn/aitoearn-server@sha256:d0e3a8159ee07872617ddce7d91590692d1909f7b19f5ddb3cbd9dfe35c4e8a0
     container_name: aitoearn-server
     restart: unless-stopped
     extra_hosts:
