@@ -272,7 +272,12 @@ services:
       start_period: 60s
 
   aitoearn-web:
+    build:
+      context: ./project/aitoearn-web
+      dockerfile: Dockerfile
+      target: production
     image: aitoearn/aitoearn-web:local
+    pull_policy: never
     container_name: aitoearn-web
     restart: unless-stopped
     depends_on:
