@@ -89,6 +89,7 @@ services:
   aitoearn-init:
     image: node@sha256:7fddd9ddeae8196abf4a3ef2de34e11f7b1a722119f91f28ddf1e99dcafdf114
     container_name: aitoearn-init
+    restart: "no"
     depends_on:
       mongodb:
         condition: service_healthy
@@ -295,6 +296,8 @@ services:
     container_name: aitoearn-web
     restart: unless-stopped
     depends_on:
+      aitoearn-init:
+        condition: service_completed_successfully
       aitoearn-server:
         condition: service_healthy
     volumes:
