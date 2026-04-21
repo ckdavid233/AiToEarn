@@ -1,6 +1,6 @@
 services:
   mongodb-keyfile-init:
-    image: mongo:latest
+    image: mongo@sha256:d343c378b5c6e2fe373174abcf4a877be0dfc721b5d0b9d582204dccb1c00b86
     container_name: aitoearn-mongodb-keyfile-init
     restart: "no"
     user: "0:0"
@@ -15,7 +15,7 @@ services:
       "
 
   mongodb:
-    image: mongo:latest
+    image: mongo@sha256:d343c378b5c6e2fe373174abcf4a877be0dfc721b5d0b9d582204dccb1c00b86
     container_name: aitoearn-mongodb
     restart: unless-stopped
     depends_on:
@@ -45,7 +45,7 @@ services:
       start_period: 40s
 
   redis:
-    image: redis:latest
+    image: redis@sha256:315270d166080f537bbdf1b489b603aaaa213cb55a544acfa51feb7481abb1c0
     container_name: aitoearn-redis
     restart: unless-stopped
     command: redis-server --requirepass password
@@ -64,7 +64,7 @@ services:
       start_period: 30s
 
   rustfs:
-    image: rustfs/rustfs:latest
+    image: rustfs/rustfs@sha256:0725587f6fcca83c1898f321424327d6e6da5e01ea20382905dd258ed5af3be4
     container_name: aitoearn-rustfs
     hostname: rustfs.local
     restart: unless-stopped
@@ -87,7 +87,7 @@ services:
       start_period: 30s
 
   aitoearn-init:
-    image: node:lts-alpine
+    image: node@sha256:7fddd9ddeae8196abf4a3ef2de34e11f7b1a722119f91f28ddf1e99dcafdf114
     container_name: aitoearn-init
     depends_on:
       mongodb:
@@ -107,7 +107,7 @@ services:
       - aitoearn-network
 
   rustfs-init:
-    image: minio/mc:latest
+    image: minio/mc@sha256:a7fe349ef4bd8521fb8497f55c6042871b2ae640607cf99d9bede5e9bdf11727
     container_name: aitoearn-rustfs-init
     depends_on:
       rustfs:
@@ -283,6 +283,8 @@ services:
       retries: 3
       start_period: 60s
 
+  # 前端镜像：本地构建并打 tag :local，不从仓库拉取（pull_policy: never）。
+  # 新机器首次部署请先执行: docker compose build aitoearn-web
   aitoearn-web:
     build:
       context: ./project/aitoearn-web
@@ -305,7 +307,7 @@ services:
       AUTO_LOGIN_TOKEN_PATH: /data/init/token.txt
 
   nginx:
-    image: nginx:alpine
+    image: nginx@sha256:f46cb72c7df02710e693e863a983ac42f6a9579058a59a35f1ae36c9958e4ce0
     container_name: aitoearn-nginx
     restart: unless-stopped
     depends_on:
